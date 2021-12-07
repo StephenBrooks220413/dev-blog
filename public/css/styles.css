@@ -1,0 +1,10 @@
+.over-flow {
+    width: 600px;
+    max-height: 300;
+    overflow: hidden;
+}
+
+
+.card-text{
+    font-size: 27px;
+}
