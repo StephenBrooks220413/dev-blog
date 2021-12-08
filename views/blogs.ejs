@@ -28,19 +28,19 @@
 </div>
 <!-- Background image -->
 
-  <div class="container mt-5 mb-5">
+  <div class="container mt-5 mb-2">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
         <% for(var i=0; i< blogposts.length; i++) { %>
           <diV class="post-preview">
-            <a href="/post/<%= blogposts[i]._id %>">
+            <a class="hover-shadow" href="/post/<%= blogposts[i]._id %>">
               <h2 class="post-title">
                 <%= blogposts[i].title %>
               </h2>
-              <h4 class="post-subtitle text-wrap">
-                <%= blogposts[i].body %>
-              </h4>
             </a>
+            <h4 class="post-subtitle text-wrap">
+              <%= blogposts[i].body %>
+            </h4>
             <p class="post-meta">
               Click in this post to read more...
             </p>
