@@ -4,6 +4,11 @@
     overflow: hidden;
 }
 
+.reg-form{
+    width: 350px;
+    height: 350px;
+    margin: auto auto auto auto;
+}
 
 .card-text{
     font-size: 27px;

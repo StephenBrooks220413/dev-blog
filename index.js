@@ -47,6 +47,14 @@ app.get('/create', (req, res) =>{
     res.render('create')
 })
 
+app.get('/register', (req, res)=>{
+    res.render('register')
+})
+
+// app.get('/login', (req, res)=>{
+//     res.render('login')
+// })
+
 // single post page
 app.get('/post/:id', async (req, res)=>{
     const blogpost = await BlogPost.findById(req.params.id)
