@@ -22,6 +22,11 @@ if(!mongoose){
     console.log('DB connected!!')
 }
 
+// controllers
+const newUsersController = require('./controllers/newUser');
+const storeUserController = require('./controllers/storeUser');
+const  loginController = require('./controllers/login');
+const loginUserController = require('./controllers/loginUser');
 
 // routes
 app.listen(3000, () => {
@@ -47,9 +52,16 @@ app.get('/create', (req, res) =>{
     res.render('create')
 })
 
-app.get('/register', (req, res)=>{
-    res.render('register')
-})
+app.get('/auth/register', newUsersController);
+
+app.post('/users/register', storeUserController);
+
+app.get('/auth/login', loginController);
+
+app.post('/users/login', loginUserController);
+// app.get('/register', (req, res)=>{
+//     res.render('register')
+// })
 
 // app.get('/login', (req, res)=>{
 //     res.render('login')
@@ -91,4 +103,3 @@ app.post('/posts/store',async (req,res) =>{
         })
 
 })
-
