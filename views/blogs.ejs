@@ -32,6 +32,7 @@
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
         <% for(var i=0; i< blogposts.length; i++) { %>
+          <% if(blogposts != '') { %>
           <diV class="post-preview">
             <a class="hover-shadow" href="/post/<%= blogposts[i]._id %>">
               <h2 class="post-title">
@@ -46,6 +47,7 @@
             </p>
           </diV>
           <hr/>
+          <% } %>
         <% } %>
       </div>
     </div>

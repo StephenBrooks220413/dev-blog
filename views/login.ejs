@@ -1,10 +1,11 @@
 <%- include('layouts/header') -%>
 
 <div class="container align-items-center text-center justify-content-center mt-2 mb-5">
+    
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/">Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Register</li>
+          <li class="breadcrumb-item active" aria-current="page">Login</li>
         </ol>
     </nav>
 
@@ -13,7 +14,7 @@
     
 
     <div class="reg-form">
-        <form action="/users/login" method="POST" enctype="multipart/form-data">
+        <form action="/users/login" method="post" enctype="multipart/form-data">
             <!-- 2 column grid layout with text inputs for the first and last names -->
             <div class="row mb-4">
                 <div class="col-md">

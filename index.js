@@ -23,10 +23,18 @@ if(!mongoose){
 }
 
 // controllers
+const expressSession = require('express-session');
+const authMiddleware = require('./middleware/authMiddleware');
 const newUsersController = require('./controllers/newUser');
 const storeUserController = require('./controllers/storeUser');
 const  loginController = require('./controllers/login');
 const loginUserController = require('./controllers/loginUser');
+const redirectIfAuthenticatedMiddleware = require('./middleware/redirectIfAuthenticatedMiddleware');
+const logoutController = require('./controllers/homeController');
+
+app.use(expressSession({
+    secret: '894w95945nfnflum'
+}))
 
 // routes
 app.listen(3000, () => {
@@ -52,20 +60,23 @@ app.get('/create', (req, res) =>{
     res.render('create')
 })
 
-app.get('/auth/register', newUsersController);
+app.get('/auth/register', redirectIfAuthenticatedMiddleware, newUsersController);
 
-app.post('/users/register', storeUserController);
+app.post('/users/register', redirectIfAuthenticatedMiddleware, storeUserController);
 
-app.get('/auth/login', loginController);
+app.get('/auth/login', redirectIfAuthenticatedMiddleware, loginController);
 
-app.post('/users/login', loginUserController);
-// app.get('/register', (req, res)=>{
-//     res.render('register')
-// })
+app.post('/users/login', redirectIfAuthenticatedMiddleware, loginUserController);
 
-// app.get('/login', (req, res)=>{
-//     res.render('login')
-// })
+app.get('/auth/logout', logoutController);
+
+global.loggedIn = null;
+
+app.use("*", (req, res, next)=>{
+    loggedIn = req.session.userId;
+    next()
+});
+
 
 // single post page
 app.get('/post/:id', async (req, res)=>{
@@ -76,7 +87,7 @@ app.get('/post/:id', async (req, res)=>{
 })
 
 // receiving post
-app.get('/blogs',async (req,res) =>{
+app.get('/blogs', authMiddleware,async (req,res) =>{
     const blogposts = await BlogPost.find({}).sort({_id: -1}).limit({limit: 10});
     // console.log(blogposts)
     res.render('blogs',{
@@ -85,7 +96,7 @@ app.get('/blogs',async (req,res) =>{
 })
 
 // creating post
-app.post('/posts/store', (req, res)=>{
+app.post('/posts/store', authMiddleware, (req, res)=>{
     BlogPost.create(req.body,(error,blogpost)=>{
         res.redirect('/blogs')
     })
@@ -103,3 +114,5 @@ app.post('/posts/store',async (req,res) =>{
         })
 
 })
+
+app.use((req, res) => res.render('notfound'));
