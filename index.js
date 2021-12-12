@@ -25,12 +25,12 @@ if(!mongoose){
 // controllers
 const expressSession = require('express-session');
 const authMiddleware = require('./middleware/authMiddleware');
-const newUsersController = require('./controllers/newUser');
+const newUserController = require('./controllers/newUser');
 const storeUserController = require('./controllers/storeUser');
-const  loginController = require('./controllers/login');
+const loginController = require('./controllers/login');
 const loginUserController = require('./controllers/loginUser');
 const redirectIfAuthenticatedMiddleware = require('./middleware/redirectIfAuthenticatedMiddleware');
-const logoutController = require('./controllers/homeController');
+const logoutController = require('./controllers/logout');
 
 app.use(expressSession({
     secret: '894w95945nfnflum'
@@ -64,7 +64,7 @@ app.get('/create', (req, res) =>{
     res.render('create')
 })
 
-app.get('/auth/register', redirectIfAuthenticatedMiddleware, newUsersController);
+app.get('/auth/register', redirectIfAuthenticatedMiddleware, newUserController);
 
 app.post('/users/register', redirectIfAuthenticatedMiddleware, storeUserController);
 
