@@ -28,10 +28,13 @@
           <li class="nav-item active">
             <a class="nav-link" href="/contact">Contact</a>
           </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/catalog">Catalog</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/blogs">Blogs</a>
+          </li>
           <% if(loggedIn){ %>
-            <li class="nav-item active">
-              <a class="nav-link" href="/blogs">Blogs</a>
-            </li>
           <li class="nav-item active">
             <a class="nav-link" href="/create">Create Post</a>
           </li>
@@ -40,19 +43,37 @@
           </li>
           <% } %>
         </ul>
+
+        
+        <div id="my-search-67017631"></div>
+        <div>
+          <script data-cfasync="false" type="text/javascript" src="https://app.ecwid.com/script.js?67017631&data_platform=code&data_date=2021-10-19" charset="utf-8"></script>
+          <script type="text/javascript"> xSearch("id=my-search-67017631"); </script>
+        </div>
+        
+        <!-- Icon -->
+        <a class="text-reset me-3" href="#">
+          <div class="ec-cart-widget"></div>
+          <div>
+            <script data-cfasync="false" type="text/javascript" src="https://app.ecwid.com/script.js?67017631&data_platform=code&data_date=2021-10-19" charset="utf-8"></script>
+            <script type="text/javascript">Ecwid.init();</script>
+          </div>
+        </a>
+        
         <% if(!loggedIn){ %>
         <ul class="navbar-nav flex-row">
+         
           <a data-mdb-toggle="tooltip"
             data-mdb-placement="bottom"
-            title="User Login"
+            title="Admin Login"
             href="/auth/login" class="nav-item">
-            <i class="fas text-white p-2 fa-key"></i>
+            <i class="fas text-white p-3 fa-key"></i>
           </a>
           <a data-mdb-toggle="tooltip"
             data-mdb-placement="bottom"
             title="Register"
             href="/auth/register" class="nav-item">
-            <i class="fas text-white p-2 fa-users"></i>
+            <i class="fas text-white p-3 fa-users"></i>
           </a> 
         </ul>
         <% } %>

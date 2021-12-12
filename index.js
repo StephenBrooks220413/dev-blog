@@ -56,6 +56,10 @@ app.get('/contact', (req, res)=>{
     res.render('contact')
 })
 
+app.get('/catalog', (req, res)=>{
+    res.render('catalog')
+})
+
 app.get('/create', (req, res) =>{
     res.render('create')
 })
@@ -87,7 +91,7 @@ app.get('/post/:id', async (req, res)=>{
 })
 
 // receiving post
-app.get('/blogs', authMiddleware,async (req,res) =>{
+app.get('/blogs', async (req,res) =>{
     const blogposts = await BlogPost.find({}).sort({_id: -1}).limit({limit: 10});
     // console.log(blogposts)
     res.render('blogs',{
